@@ -1,8 +1,8 @@
 <?php
 
-use App\core\Form\Form;
+use TDarkCoder\Framework\Form\Form;
 
-$this->extend('guest');
+$this->extend('app');
 
 $form = new Form();
 ?>
@@ -11,25 +11,25 @@ $form = new Form();
 
 <?= $form->start('/register', 'POST') ?>
 <div class="row">
-    <div class="col-6 my-3">
-        <?= $form->input('email')->email() ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6 my-3">
-        <?= $form->input('firstName', 'First name') ?>
-    </div>
-    <div class="col-6 my-3">
-        <?= $form->input('lastName', 'Last name') ?>
-    </div>
-    <div class="col-6 my-3">
-        <?= $form->input('password')->password() ?>
-    </div>
-    <div class="col-6 my-3">
-        <?= $form->input('confirmPassword', 'Confirm password')->password() ?>
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-success">Create</button>
+    <div class="col-md-6">
+        <div class="my-3">
+            <?= $form->input('email')->email() ?>
+        </div>
+        <div class="my-3">
+            <?= $form->input('firstName', 'First name') ?>
+        </div>
+        <div class="my-3">
+            <?= $form->input('lastName', 'Last name') ?>
+        </div>
+        <div class="my-3">
+            <?= $form->input('password')->password() ?>
+        </div>
+        <div class="my-3">
+            <?= $form->input('confirmPassword', 'Confirm password')->password() ?>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
     </div>
 </div>
 <?= $form->end() ?>

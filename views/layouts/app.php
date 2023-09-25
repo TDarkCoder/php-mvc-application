@@ -13,7 +13,7 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Library</a>
+            <a class="navbar-brand" href="/">Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +26,19 @@
                     </li>
                 </ul>
                 <div class="ms-auto d-flex align-items-center">
-                    <?= app()->user->fullName() ?>
-                    <a href="/logout" class="btn btn-danger ms-4">Logout</a>
+                    <?php if (app()->user): ?>
+                        <?= app()->user->fullName() ?>
+                        <a href="/logout" class="btn btn-danger ms-4">Logout</a>
+                    <?php else: ?>
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Sign up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Sign in</a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

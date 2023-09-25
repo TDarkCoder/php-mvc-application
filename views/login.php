@@ -1,8 +1,8 @@
 <?php
 
-use App\core\Form\Form;
+use TDarkCoder\Framework\Form\Form;
 
-$this->extend('guest');
+$this->extend('app');
 
 $form = new Form();
 ?>
@@ -11,14 +11,15 @@ $form = new Form();
 
 <?= $form->start('/login', 'POST') ?>
 <div class="row">
-    <div class="col-6 my-3">
-        <?= $form->input('email')->email() ?>
+    <div class="col-md-6">
+        <div class="my-3">
+            <?= $form->input('email')->email() ?>
+        </div>
+        <div class="my-3">
+            <?= $form->input('password')->password() ?>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+        </div>
     </div>
-    <div class="col-6 my-3">
-        <?= $form->input('password')->password() ?>
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-success">Sign in</button>
-    </div>
-</div>
-<?= $form->end() ?>
+    <?= $form->end() ?>
