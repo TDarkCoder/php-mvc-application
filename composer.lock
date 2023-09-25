@@ -70,16 +70,16 @@
         },
         {
             "name": "php-mvc/framework",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TDarkCoder/php-mvc-framework.git",
-                "reference": "b9686b385007b3ae45e1a4f4ccde96d486fd24ed"
+                "reference": "56dc8bcf9369cd396f1fc0bad2a8ad153b1a40f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TDarkCoder/php-mvc-framework/zipball/b9686b385007b3ae45e1a4f4ccde96d486fd24ed",
-                "reference": "b9686b385007b3ae45e1a4f4ccde96d486fd24ed",
+                "url": "https://api.github.com/repos/TDarkCoder/php-mvc-framework/zipball/56dc8bcf9369cd396f1fc0bad2a8ad153b1a40f6",
+                "reference": "56dc8bcf9369cd396f1fc0bad2a8ad153b1a40f6",
                 "shasum": ""
             },
             "require": {
@@ -106,9 +106,9 @@
             "description": "The PHP MVC Framework",
             "support": {
                 "issues": "https://github.com/TDarkCoder/php-mvc-framework/issues",
-                "source": "https://github.com/TDarkCoder/php-mvc-framework/tree/v1.0.1"
+                "source": "https://github.com/TDarkCoder/php-mvc-framework/tree/v1.0.2"
             },
-            "time": "2023-09-25T01:35:40+00:00"
+            "time": "2023-09-25T13:58:32+00:00"
         },
         {
             "name": "phpoption/phpoption",
