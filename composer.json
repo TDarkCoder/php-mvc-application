@@ -1,0 +1,19 @@
+{
+    "name": "php-mvc/application",
+    "type": "project",
+    "description": "The skeleton application for PHP MVC Framework",
+    "keywords": [
+        "php",
+        "mvc",
+        "framework"
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "."
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "php-mvc/framework": "^v1.0"
+    }
+}
