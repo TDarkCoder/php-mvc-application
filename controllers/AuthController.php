@@ -52,6 +52,7 @@ class AuthController extends Controller
         ]));
 
         $user->authorizeToken();
+        app()->session->set('success', 'Thank you for your registration!', true);
 
         redirect('/home');
     }

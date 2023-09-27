@@ -2,8 +2,8 @@
 
 namespace App\models;
 
-use App\services\AuthorizeTokens;
 use TDarkCoder\Framework\Model;
+use TDarkCoder\Framework\Services\AccessToken\AuthorizeTokens;
 
 class User extends Model
 {
