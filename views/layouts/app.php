@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $this->title ?></title>
+    <title><?= $this->getTitle() ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -46,15 +46,15 @@
 </header>
 <main>
     <div class="container my-4">
-        <?php if (app()->session->get('success')): ?>
+        <?php if (session()->get('success')): ?>
             <div class="alert alert-success">
-                <?= app()->session->get('success') ?>
+                <?= session()->get('success') ?>
             </div>
         <?php endif ?>
 
-        <?php if (app()->session->get('error')): ?>
+        <?php if (session()->get('error')): ?>
             <div class="alert alert-danger">
-                <?= app()->session->get('error') ?>
+                <?= session()->get('error') ?>
             </div>
         <?php endif ?>
         {{content}}

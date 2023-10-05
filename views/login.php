@@ -2,7 +2,8 @@
 
 use TDarkCoder\Framework\Form\Form;
 
-$this->extend('app');
+$this->setTitle('Sign in');
+$this->setLayout('app');
 
 $form = new Form();
 ?>

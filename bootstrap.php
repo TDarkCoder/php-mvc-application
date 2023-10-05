@@ -2,7 +2,6 @@
 
 use Dotenv\Dotenv;
 
-
 $env = Dotenv::createImmutable(__DIR__);
 $env->load();
 

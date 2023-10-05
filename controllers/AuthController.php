@@ -24,7 +24,45 @@ class AuthController extends Controller
     /**
      * @throws Exception
      */
-    public function register(Request $request)
+    public function login(Request $request): string
+    {
+        if ($request->isGet()) {
+            return view('login');
+        }
+
+        $validation = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+
+        if (!$validation) {
+            return view('login');
+        }
+
+        $user = User::findOne(['email' => $request->email]);
+
+        if (!$user || !password_verify($request->password, $user->password)) {
+            session()->set('error', 'Incorrect email or password', true);
+
+            return view('login');
+        }
+
+        $user->authorizeToken();
+
+        redirect('/home');
+    }
+
+    public function logout(): void
+    {
+        app()->user->logout();
+
+        redirect('/home');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function register(Request $request): string
     {
         if ($request->isGet()) {
             return view('register');
@@ -52,45 +90,7 @@ class AuthController extends Controller
         ]));
 
         $user->authorizeToken();
-        app()->session->set('success', 'Thank you for your registration!', true);
-
-        redirect('/home');
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function login(Request $request): string
-    {
-        if ($request->isGet()) {
-            return view('login');
-        }
-
-        $validation = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
-
-        if (!$validation) {
-            return view('login');
-        }
-
-        $user = User::findOne(['email' => $request->email]);
-
-        if (!$user || !password_verify($request->password, $user->password)) {
-            app()->session->set('error', 'Incorrect email or password', true);
-
-            return view('login');
-        }
-
-        $user->authorizeToken();
-
-        redirect('/home');
-    }
-
-    public function logout(): void
-    {
-        app()->user->logout();
+        session()->set('success', 'Thank you for your registration!', true);
 
         redirect('/home');
     }

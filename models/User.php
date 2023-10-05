@@ -17,13 +17,13 @@ class User extends Model
         'password',
     ];
 
-    public function table(): string
-    {
-        return 'users';
-    }
-
     public function fullName(): string
     {
         return "$this->firstName $this->lastName";
+    }
+
+    public function table(): string
+    {
+        return 'users';
     }
 }
