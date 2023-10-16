@@ -1,22 +1,25 @@
 services:
   web:
+    container_name: mvc_web
     image: docker8aziz/mvc-nginx:1.0.0
     restart: unless-stopped
     ports:
       - 80:80
   database:
-    image: mysql:${MYSQL_VERSION}
+    container_name: mvc_database
+    image: ${DB_DRIVER}:${DB_VERSION}
     volumes:
       - dbData:/var/lib/mysql
     ports:
-      - ${MYSQL_PORT}:${MYSQL_PORT}
+      - ${DB_PORT}:${DB_PORT}
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_USERNAME: ${MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USERNAME: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     restart: unless-stopped
   cacheQueue:
+    container_name: mvc_cacheQueue
     image: redis:${REDIS_VERSION}
     ports:
       - ${REDIS_PORT}:${REDIS_PORT}
@@ -24,12 +27,14 @@ services:
       - cacheQueueData:/data
     restart: unless-stopped
   app:
+    container_name: mvc_app
     image: docker8aziz/mvc-php:1.0.0
     depends_on:
       - web
       - database
       - cacheQueue
   adminer:
+    container_name: mvc_adminer
     image: adminer
     restart: unless-stopped
     ports:

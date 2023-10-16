@@ -4,9 +4,9 @@ use App\models\User;
 
 return [
     'database' => [
-        'dsn' => env('MYSQL_DSN'),
-        'username' => env('MYSQL_USERNAME', 'root'),
-        'password' => env('MYSQL_PASSWORD', 'root'),
+        'dsn' => env('DB_DSN'),
+        'username' => env('DB_USERNAME', 'root'),
+        'password' => env('DB_PASSWORD', 'root'),
     ],
     'user' => User::class,
 ];

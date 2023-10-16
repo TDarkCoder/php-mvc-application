@@ -20,11 +20,13 @@ development in PHP.
 - **Form Constructor:** Easily create forms for user input and validation.
 - **Model:** Implement models to interact with the database and perform CRUD operations.
 
-## Installations
+## Installation
+
+> **Note:** The installation process supposes you to have Docker, if no, just run commands without `docker`
 
 ```bash
-composer install
 copy .env .env.example
+docker compose up --build -d
 ```
 
 ## Migration commands
@@ -32,17 +34,17 @@ copy .env .env.example
 To run migrations
 
 ```bash
-php migrations.php up  
+docker exec mvc_app php migrations.php up  
 ```
 
 To rollback migrations
 
 ```bash
-php migrations.php down
+docker exec mvc_app php migrations.php down
 ```
 
 To reset entire database
 
 ```bash
-php migrations.php refresh
+docker exec mvc_app php migrations.php refresh
 ```
