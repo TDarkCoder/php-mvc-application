@@ -1,0 +1,42 @@
+services:
+  web:
+    image: docker8aziz/mvc-nginx:1.0.0
+    restart: unless-stopped
+    ports:
+      - 80:80
+  database:
+    image: mysql:${MYSQL_VERSION}
+    volumes:
+      - dbData:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USERNAME: ${MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_NAME}
+    restart: unless-stopped
+  cacheQueue:
+    image: redis:${REDIS_VERSION}
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    volumes:
+      - cacheQueueData:/data
+    restart: unless-stopped
+  app:
+    image: docker8aziz/mvc-php:1.0.0
+    depends_on:
+      - web
+      - database
+      - cacheQueue
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+
+volumes:
+  dbData:
+  cacheQueueData:

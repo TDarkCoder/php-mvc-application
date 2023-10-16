@@ -12,7 +12,7 @@ $flags = array_map(fn($flag): string => $flag->value, MigrationFlags::cases());
 if (!in_array($flag, $flags)) {
     echo 'Need to add one following flags: ' . implode(', ', $flags);
 
-    exit;
+    exit(1);
 }
 
 $app = new Application(__DIR__, $config);
