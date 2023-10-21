@@ -1,8 +1,8 @@
 <?php
 
-use App\controllers\AuthController;
-use App\middleware\AuthMiddleware;
-use App\middleware\GuestMiddleware;
+use App\Controllers\AuthController;
+use App\Middleware\AuthMiddleware;
+use App\Middleware\GuestMiddleware;
 use TDarkCoder\Framework\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -17,9 +17,9 @@ $app
     ->router
     ->get('/home', 'index')
     ->middleware(AuthMiddleware::class);
-$app->router->get('/register', [AuthController::class, 'register']);
+$app->router->get('/register', 'register');
 $app->router->post('/register', [AuthController::class, 'register']);
-$app->router->get('/login', [AuthController::class, 'login']);
+$app->router->get('/login', 'login');
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
-use App\middleware\AuthMiddleware;
-use App\middleware\GuestMiddleware;
-use App\models\User;
+use App\Middleware\AuthMiddleware;
+use App\Middleware\GuestMiddleware;
+use App\Models\User;
 use Exception;
-use TDarkCoder\Framework\Controller;
-use TDarkCoder\Framework\Request;
+use TDarkCoder\Framework\Enums\SessionKeys;
+use TDarkCoder\Framework\Http\Controller;
+use TDarkCoder\Framework\Http\Request;
 
 class AuthController extends Controller
 {
@@ -26,25 +27,17 @@ class AuthController extends Controller
      */
     public function login(Request $request): string
     {
-        if ($request->isGet()) {
-            return view('login');
-        }
-
-        $validation = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
-        if (!$validation) {
-            return view('login');
-        }
-
         $user = User::findOne(['email' => $request->email]);
 
         if (!$user || !password_verify($request->password, $user->password)) {
-            session()->set('error', 'Incorrect email or password', true);
+            session()->setFlash('error', 'Incorrect email or password');
 
-            return view('login');
+            redirect($request->previousUrl());
         }
 
         $user->authorizeToken();
@@ -64,21 +57,13 @@ class AuthController extends Controller
      */
     public function register(Request $request): string
     {
-        if ($request->isGet()) {
-            return view('register');
-        }
-
-        $validation = $request->validate([
+        $request->validate([
             'email' => 'required|email|unique:' . User::class,
             'firstName' => 'required',
             'lastName' => 'required',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|match:password',
         ]);
-
-        if (!$validation) {
-            return view('register');
-        }
 
         $request->password = password_hash($request->password, PASSWORD_DEFAULT);
 
@@ -90,7 +75,7 @@ class AuthController extends Controller
         ]));
 
         $user->authorizeToken();
-        session()->set('success', 'Thank you for your registration!', true);
+        session()->setFlash('success', 'Thank you for your registration!');
 
         redirect('/home');
     }

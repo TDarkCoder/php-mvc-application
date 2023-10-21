@@ -9,11 +9,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "App\\": "."
+            "App\\": "src/"
         }
     },
     "require": {
         "php": "^8.1",
-        "php-mvc/framework": "^v1.0"
+        "php-mvc/framework": "^v1.1"
     }
 }

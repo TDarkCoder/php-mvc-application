@@ -2,8 +2,8 @@
 
 use TDarkCoder\Framework\Form\Form;
 
-$this->setTitle('Sign up');
-$this->setLayout('app');
+$this->title = 'Sign up';
+$this->layout = 'app';
 
 $form = new Form();
 ?>
@@ -11,6 +11,7 @@ $form = new Form();
 <h3>Create an account</h3>
 
 <?= $form->start('/register', 'POST') ?>
+<?= $form->input('_token')->token() ?>
 <div class="row">
     <div class="col-md-6">
         <div class="my-3">

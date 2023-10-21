@@ -1,6 +1,6 @@
 <?php
 
-use TDarkCoder\Framework\Migration;
+use TDarkCoder\Framework\Database\Migration;
 
 return new class implements Migration {
 

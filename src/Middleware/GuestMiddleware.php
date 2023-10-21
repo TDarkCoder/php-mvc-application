@@ -1,9 +1,9 @@
 <?php
 
-namespace App\middleware;
+namespace App\Middleware;
 
-use TDarkCoder\Framework\Middleware;
-use TDarkCoder\Framework\Request;
+use TDarkCoder\Framework\Http\Middleware;
+use TDarkCoder\Framework\Http\Request;
 
 class GuestMiddleware implements Middleware
 {

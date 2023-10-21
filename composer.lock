@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "435c4e9d902ecd221ff4f9886cec26c7",
+    "content-hash": "9ab9731cdaf310d80ffe0d13585b28d2",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -70,16 +70,16 @@
         },
         {
             "name": "php-mvc/framework",
-            "version": "v1.0.5",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TDarkCoder/php-mvc-framework.git",
-                "reference": "faddccd23067e175d87f1362b2b7b65073d976e7"
+                "reference": "d45c44db7d344bb8187f90b869e2408a00143da3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TDarkCoder/php-mvc-framework/zipball/faddccd23067e175d87f1362b2b7b65073d976e7",
-                "reference": "faddccd23067e175d87f1362b2b7b65073d976e7",
+                "url": "https://api.github.com/repos/TDarkCoder/php-mvc-framework/zipball/d45c44db7d344bb8187f90b869e2408a00143da3",
+                "reference": "d45c44db7d344bb8187f90b869e2408a00143da3",
                 "shasum": ""
             },
             "require": {
@@ -106,9 +106,9 @@
             "description": "The PHP MVC Framework",
             "support": {
                 "issues": "https://github.com/TDarkCoder/php-mvc-framework/issues",
-                "source": "https://github.com/TDarkCoder/php-mvc-framework/tree/v1.0.5"
+                "source": "https://github.com/TDarkCoder/php-mvc-framework/tree/v1.1.0"
             },
-            "time": "2023-10-05T08:09:22+00:00"
+            "time": "2023-10-21T12:41:39+00:00"
         },
         {
             "name": "phpoption/phpoption",

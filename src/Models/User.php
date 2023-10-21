@@ -1,8 +1,8 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
-use TDarkCoder\Framework\Model;
+use TDarkCoder\Framework\Database\Model;
 use TDarkCoder\Framework\Services\AccessToken\AuthorizeTokens;
 
 class User extends Model
