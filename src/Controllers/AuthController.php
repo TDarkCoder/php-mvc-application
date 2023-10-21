@@ -6,7 +6,6 @@ use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 use App\Models\User;
 use Exception;
-use TDarkCoder\Framework\Enums\SessionKeys;
 use TDarkCoder\Framework\Http\Controller;
 use TDarkCoder\Framework\Http\Request;
 
