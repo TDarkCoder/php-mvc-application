@@ -19,5 +19,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10.4"
+    },
+    "scripts": {
+        "run-phpunit": "vendor/bin/phpunit"
     }
 }
