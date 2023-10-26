@@ -2,8 +2,12 @@
 
 namespace Tests\Feature;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    public function testApplicationResponse()
+    {
+        $this->assertNull($this->createApplication()->user);
+    }
 }

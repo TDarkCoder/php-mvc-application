@@ -6,14 +6,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: database
+          MYSQL_USERNAME: root
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - uses: actions/checkout@v3
       - name: Install Composer dependencies
         working-directory: ./
         run: composer install --prefer-dist
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "APP_URL=http://localhost/" >> .env
+          echo "DB_DSN=mysql:host=localhost;port=3306;dbname=database" >> .env
+          echo "DB_USERNAME=root" >> .env
+          cat .env
+
+
       - name: Run Tests
-        working-directory: ./
         run: composer run-phpunit
+        working-directory: ./
+
       - run: docker build --target app -t docker8aziz/mvc-php:1.0.1 -f ./php/Dockerfile .
       - run: docker build -t docker8aziz/mvc-nginx:1.0.1 -f ./nginx/Dockerfile .
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
