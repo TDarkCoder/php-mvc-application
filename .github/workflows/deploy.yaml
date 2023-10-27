@@ -12,33 +12,38 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: database
-          MYSQL_USERNAME: root
+          MYSQL_DATABASE: library
         ports:
           - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install Composer dependencies
+      - name: Application Setup
         working-directory: ./
-        run: composer install --prefer-dist
-
-      - name: Create .env file
         run: |
-          touch .env
-          echo "APP_URL=http://localhost/" >> .env
-          echo "DB_DSN=mysql:host=localhost;port=3306;dbname=database" >> .env
-          echo "DB_USERNAME=root" >> .env
-          cat .env
-
-
+          cp .env.example .env
+          composer install --prefer-dist
+      - name: Run migrations
+        env:
+          DB_DRIVER: mysql
+          DB_VERSION: latest
+          DB_HOST: localhost
+          DB_USERNAME: root
+          DB_DATABASE: database
+          DB_PORT: 33306
+        run: php migrations.php up
       - name: Run Tests
         run: composer run-phpunit
         working-directory: ./
-
-      - run: docker build --target app -t docker8aziz/mvc-php:1.0.1 -f ./php/Dockerfile .
-      - run: docker build -t docker8aziz/mvc-nginx:1.0.1 -f ./nginx/Dockerfile .
-      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push docker8aziz/mvc-php:1.0.1
-      - run: docker push docker8aziz/mvc-nginx:1.0.1
+      - name: Run Docker Setup
+        run: |
+          docker build --target app -t docker8aziz/mvc-php:1.0.1 -f ./php/Dockerfile .
+          docker build -t docker8aziz/mvc-nginx:1.0.1 -f ./nginx/Dockerfile .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push docker8aziz/mvc-php:1.0.1
+          docker push docker8aziz/mvc-nginx:1.0.1
